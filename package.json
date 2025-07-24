@@ -1,5 +1,5 @@
 {
-	"name"         : "blueprint",
+	"name"         : "relatia",
 	"version"      : "0.0.1",
 	"type"         : "module",
 	"main"         : "index.js",
