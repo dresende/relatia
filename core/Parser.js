@@ -8,8 +8,12 @@ export class Parser {
 		types  : [],
 	}
 
-	blocks() {
-		return this.#blocks;
+	types() {
+		return this.#blocks.types;
+	}
+
+	models() {
+		return this.#blocks.models;
 	}
 
 	async parseFile(filename) {
@@ -60,7 +64,7 @@ export class Parser {
 	}
 
 	#addProperty(block, line) {
-		const name            = line.split(/\s+/, 1)[0];
+		const name = line.split(/\s+/, 1)[0];
 
 		if (name.includes("(")) {
 			const parameters = [ ... line.matchAll(/(?<name>[\w\-]+)(\((?<options>[^\)]+)\))?/g) ];
@@ -79,13 +83,13 @@ export class Parser {
 		let   property        = null;
 
 		if (type in Types.Types) {
-			property = new (Types.Types[type])(...options);
+			property = new (Types.Types[type])(name, ...options);
 		} else if (type in Types.Alias) {
-			property = Types.Alias[type](...options);
+			property = Types.Alias[type](name, ...options);
 		} else {
-			property = new (Types.Types.property)(...options);
+			property = new (Types.Types.property)(name, ...options);
 		}
-		
+
 		for (const { groups } of parameters) {
 			property.addOption(groups.name, groups.options || "");
 		}

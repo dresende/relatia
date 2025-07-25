@@ -1,26 +1,26 @@
 import { mapValue } from "../tools.js";
 
 export class Property {
-	#options = {};
+	name    = "";
+	type    = "property";
+	options = {};
 
-	type = "property";
+	constructor(name) {
+		this.name = name;
+	}
 
 	addOption(name, parameters) {
 		if (!parameters.length) {
 			if (name[0] == "-") {
-				this.#options[name.substr(1)] = false;
+				this.options[name.substr(1)] = false;
 			} else {
-				this.#options[name] = true;
+				this.options[name] = true;
 			}
 		} else if (parameters.includes(",")) {
-			this.#options[name] = parameters.split(/\s*,\s*/).map(mapValue);
+			this.options[name] = parameters.split(/\s*,\s*/).map(mapValue);
 		} else {
-			this.#options[name] = parameters;
+			this.options[name] = parameters;
 		}
-	}
-
-	options(name) {
-		return (typeof name != "undefined" ? this.#options[name] ?? null : this.#options);
 	}
 
 	params() {
@@ -32,6 +32,10 @@ export class Property {
 	}
 
 	printOptions() {
-		return JSON.stringify(this.#options);
+		return JSON.stringify(this.options);
+	}
+
+	definition() {
+		console.log("Property definition not implemented for type:", this.type);
 	}
 }
