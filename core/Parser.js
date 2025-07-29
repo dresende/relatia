@@ -4,16 +4,16 @@ import { mapValue } from "./tools.js";
 
 export class Parser {
 	#blocks = {
-		models : [],
-		types  : [],
+		models : {},
+		types  : {},
 	}
 
 	types() {
-		return this.#blocks.types;
+		return Object.values(this.#blocks.types);
 	}
 
 	models() {
-		return this.#blocks.models;
+		return Object.values(this.#blocks.models);
 	}
 
 	async parseFile(filename) {
@@ -35,7 +35,7 @@ export class Parser {
 				this.#addProperty(block, line.trim());
 			} else {
 				if (block !== null) {
-					this.#blocks[`${type}s`].push(block);
+					this.#blocks[`${type}s`][block.name] = block;
 				}
 
 				// new block
@@ -45,7 +45,7 @@ export class Parser {
 		}
 
 		if (block !== null) {
-			this.#blocks[`${type}s`].push(block);
+			this.#blocks[`${type}s`][block.name] = block;
 		}
 
 		return this;

@@ -33,6 +33,10 @@ export class Decimal extends Property {
 	}
 	
 	definition() {
+		if (typeof this.options.default != "number" && +this.options.default > 0) {
+			this.options.default = +this.options.default;
+		}
+
 		return `${escapeId(this.name)} DECIMAL(${this.digits},${this.decimals})${this.options.unsigned ? " UNSIGNED" : ""} ${this.options.null ? "NULL" : "NOT NULL"} DEFAULT ${escape(this.options.default)}`;
 	}
 }

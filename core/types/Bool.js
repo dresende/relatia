@@ -9,6 +9,6 @@ export class Bool extends Property {
 	}
 
 	definition() {
-		return `${escapeId(this.name)} TINYINT(1) UNSIGNED ${this.options.null ? "NULL" : "NOT NULL"} DEFAULT ${this.options.default ? 1 : 0}`;
+		return `${escapeId(this.name)} TINYINT(1) UNSIGNED ${this.options.null ? "NULL" : "NOT NULL"} DEFAULT ${!!this.options.default ? 1 : 0}`;
 	}
 }

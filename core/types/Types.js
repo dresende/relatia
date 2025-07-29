@@ -8,6 +8,7 @@ import { Decimal }   from "./Decimal.js";
 import { Float }     from "./Float.js";
 import { Number }    from "./Number.js";
 import { Point }     from "./Point.js";
+import { Polygon }   from "./Polygon.js";
 
 import { String }    from "./String.js";
 import { Text }      from "./Text.js";
@@ -29,6 +30,7 @@ export const Types = {
 	float     : Float,
 	number    : Number,
 	point     : Point,
+	polygon   : Polygon,
 
 	string    : String,
 	text      : Text,
