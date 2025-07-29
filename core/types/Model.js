@@ -1,4 +1,5 @@
 import { mapValue, escapeId } from "../tools.js";
+import { Types }              from "./Types.js";
 
 export class Model {
 	name       = "";
@@ -14,7 +15,7 @@ export class Model {
 	addProperty(name, property) {
 		this.properties[name] = property;
 
-		if (property.type === "reference" && !this.#depends.includes(property.model)) {
+		if (property.type === "reference" && !this.#depends.includes(property.model) && property.model !== this.name && property.options.loop !== true && property.options.deprecated !== true) {
 			this.addDependency(property.model);
 		}
 	}
@@ -57,15 +58,30 @@ export class Model {
 		this.#depends = this.#depends.filter(dep => dep !== model);
 	}
 
-	definition() {
+	definition({ models = {} }) {
 		const table_commands = [];
 
+		if (!("id" in this.properties)) {
+			const id = new Types.number("id", 11);
+			id.addOption("unsigned");
+
+			this.addProperty("id", id);
+			console.log(id);
+		}
+
 		// id
-		table_commands.push(`${escapeId("id")} INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+		table_commands.push(`${this.properties.id.definition({ no_default: true })} PRIMARY KEY AUTO_INCREMENT`);
+		// if ("id" in this.properties) {
+			
+		// } else {
+		// 	table_commands.push(`${escapeId("id")} INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT`);
+		// }
 
 		// columns
 		for (const name in this.properties) {
-			table_commands.push(this.properties[name].definition());
+			if (name === "id") continue;
+
+			table_commands.push(this.properties[name].definition({ models }));
 		}
 
 		// references

@@ -9,7 +9,7 @@ export class Property {
 		this.name = name;
 	}
 
-	addOption(name, parameters) {
+	addOption(name, parameters = "") {
 		if (!parameters.length) {
 			if (name[0] == "-") {
 				this.options[name.substr(1)] = false;
@@ -19,7 +19,7 @@ export class Property {
 		} else if (parameters.includes(",")) {
 			this.options[name] = parameters.split(/\s*,\s*/).map(mapValue);
 		} else {
-			this.options[name] = parameters;
+			this.options[name] = mapValue(parameters);
 		}
 	}
 
@@ -37,5 +37,13 @@ export class Property {
 
 	definition() {
 		console.log("Property definition not implemented for type:", this.type);
+	}
+
+	clone() {
+		const copy = new this.constructor(this.name, ... this.params());
+
+		copy.options = this.options;
+
+		return copy;
 	}
 }

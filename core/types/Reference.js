@@ -20,7 +20,20 @@ export class Reference extends Property {
 		return `${this.type}(${this.model}.${this.id})`;
 	}
 
-	definition() {
+	definition({ models = {}, alias }) {
+		const other_model = models?.get(this.model);
+
+		if (other_model && this.id in other_model.properties) {
+			const clone = other_model.properties[this.id].clone();
+
+			clone.name         = this.name;
+			clone.options.null = this.options.null;
+
+			delete clone.options.default;
+
+			return clone.definition({ no_default: true });
+		}
+
 		return `${escapeId(this.name)} INT(11) UNSIGNED ${this.options.null ? "NULL DEFAULT NULL" : "NOT NULL"}`;
 	}
 
