@@ -1,28 +1,30 @@
-import { Type }      from "./Type.js";
-import { Model }     from "./Model.js";
-import { Property }  from "./Property.js";
+import { Type }       from "./Type.js";
+import { Model }      from "./Model.js";
+import { Property }   from "./Property.js";
+import { Population } from "./Population.js";
 
-import { Reference } from "./Reference.js";
+import { Reference }  from "./Reference.js";
 
-import { Decimal }   from "./Decimal.js";
-import { Float }     from "./Float.js";
-import { Number }    from "./Number.js";
-import { Point }     from "./Point.js";
-import { Polygon }   from "./Polygon.js";
+import { Decimal }    from "./Decimal.js";
+import { Float }      from "./Float.js";
+import { Number }     from "./Number.js";
+import { Point }      from "./Point.js";
+import { Polygon }    from "./Polygon.js";
 
-import { String }    from "./String.js";
-import { Text }      from "./Text.js";
-import { JSON }      from "./JSON.js";
-import { Binary }    from "./Binary.js";
+import { String }     from "./String.js";
+import { Text }       from "./Text.js";
+import { JSON }       from "./JSON.js";
+import { Binary }     from "./Binary.js";
 
-import { Date }      from "./Date.js";
-import { Bool }      from "./Bool.js";
-import { Enum }      from "./Enum.js";
+import { Date }       from "./Date.js";
+import { Bool }       from "./Bool.js";
+import { Enum }       from "./Enum.js";
 
 export const Types = {
-	type      : Type,
-	model     : Model,
-	property  : Property,
+	type       : Type,
+	model      : Model,
+	property   : Property,
+	population : Population,
 
 	reference : Reference,
 

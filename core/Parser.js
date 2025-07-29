@@ -4,8 +4,9 @@ import { mapValue } from "./tools.js";
 
 export class Parser {
 	#blocks = {
-		models : {},
-		types  : {},
+		models      : {},
+		types       : {},
+		populations : {},
 	}
 
 	types() {
@@ -14,6 +15,10 @@ export class Parser {
 
 	models() {
 		return Object.values(this.#blocks.models);
+	}
+
+	populations() {
+		return Object.values(this.#blocks.populations);
 	}
 
 	async parseFile(filename) {
