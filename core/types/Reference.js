@@ -27,11 +27,13 @@ export class Reference extends Property {
 			const clone = other_model.properties[this.id].clone();
 
 			clone.name         = this.name;
-			clone.options.null = this.options.null;
 
-			delete clone.options.default;
+			if (this.options.null) {
+				clone.options.null    = true;
+				clone.options.default = null;
+			}
 
-			return clone.definition({ no_default: true });
+			return clone.definition();
 		}
 
 		return `${escapeId(this.name)} INT(11) UNSIGNED ${this.options.null ? "NULL DEFAULT NULL" : "NOT NULL"}`;
