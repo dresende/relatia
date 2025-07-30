@@ -66,7 +66,6 @@ export class Model {
 			id.addOption("unsigned");
 
 			this.addProperty("id", id);
-			console.log(id);
 		}
 
 		// id
