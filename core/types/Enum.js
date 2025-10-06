@@ -24,6 +24,6 @@ export class Enum extends Property {
 	}
 	
 	definition() {
-		return `${escapeId(this.name)} ENUM(${this.values.map(value => escape("" + value)).join(",")}) ${"default" in this.options ? "NOT NULL DEFAULT " + escape("" + this.options.default) : "NULL DEFAULT NULL"}`;
+		return `${escapeId(this.name)} ENUM(${this.values.map(value => escape("" + value)).join(",")}) ${"default" in this.options ? "DEFAULT " + escape("" + this.options.default) : "NULL DEFAULT NULL"}`;
 	}
 }
