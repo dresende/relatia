@@ -10,6 +10,6 @@ export class Text extends Property {
 	}
 
 	definition() {
-		return `${escapeId(this.name)} ${this.options.long ? "LONG" : ""}TEXT ${this.options.null ? `NULL DEFAULT ${"default" in this.options ? escape(this.options.default) : "NULL"}` : `NOT NULL DEFAULT ${escape(this.options.default || "")}`}`;
+		return `${escapeId(this.name)} ${this.options.long ? "LONG" : ""}TEXT ${this.options.null ? "NULL" : "NOT NULL"}`;
 	}
 }

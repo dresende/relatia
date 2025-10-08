@@ -20,6 +20,6 @@ export class Binary extends Property {
 	}
 	
 	definition() {
-		return `${escapeId(this.name)} LONGBLOB ${this.options.null ? "NULL DEFAULT NULL" : "NOT NULL"}`;
+		return `${escapeId(this.name)} LONGBLOB ${this.options.null ? "NULL" : "NOT NULL"}`;
 	}
 }

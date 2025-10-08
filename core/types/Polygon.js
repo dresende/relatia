@@ -20,6 +20,6 @@ export class Polygon extends Property {
 	}
 	
 	definition() {
-		return `${escapeId(this.name)} POLYGON ${this.options.null ? "NULL DEFAULT NULL" : `NOT NULL DEFAULT ${escape(this.options.default)}`}`;
+		return `${escapeId(this.name)} POLYGON ${this.options.null ? "NULL" : "NOT NULL"}`;
 	}
 }

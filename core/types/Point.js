@@ -20,6 +20,6 @@ export class Point extends Property {
 	}
 	
 	definition() {
-		return `${escapeId(this.name)} POINT ${this.options.null ? "NULL DEFAULT NULL" : `NOT NULL DEFAULT ${escape(this.options.default)}`}`;
+		return `${escapeId(this.name)} POINT ${this.options.null ? "NULL" : "NOT NULL"}`;
 	}
 }

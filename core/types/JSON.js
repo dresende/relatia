@@ -18,6 +18,6 @@ export class JSON extends Property {
 	}
 	
 	definition() {
-		return `${escapeId(this.name)} JSON ${this.options.null ? `NULL DEFAULT ${"default" in this.options ? escape(this.options.default) : "NULL"}` : `NOT NULL DEFAULT ${escape(this.options.default || "")}`}`;
+		return `${escapeId(this.name)} JSON ${this.options.null ? "NULL" : "NOT NULL"}`;
 	}
 }
