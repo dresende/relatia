@@ -14,6 +14,7 @@ export class Reference extends Property {
 
 		this.model = model;
 		this.id    = id;
+		this.uid   = ((model.substr(0, 58) + "_k") + Math.random().toString().substr(2, 10)).substr(0, 64);
 	}
 
 	name() {
@@ -40,6 +41,6 @@ export class Reference extends Property {
 	}
 
 	reference_definition() {
-		return `FOREIGN KEY (${escapeId(this.name)}) REFERENCES ${escapeId(this.model)}(${escapeId(this.id)})`;
+		return `CONSTRAINT ${escapeId(this.uid)} FOREIGN KEY (${escapeId(this.name)}) REFERENCES ${escapeId(this.model)}(${escapeId(this.id)})`;
 	}
 }
