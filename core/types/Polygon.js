@@ -3,6 +3,7 @@ import { escape, escapeId } from "../tools.js";
 
 export class Polygon extends Property {
 	type    = "polygon";
+	spatial = true;
 	options = {
 		default : "",
 	};

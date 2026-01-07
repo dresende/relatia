@@ -97,8 +97,18 @@ export class Model {
 		this.options.map(option => {
 			switch (option.name) {
 				case "index":
+					try {
+						const command = (option.value.some(name => this.properties[name].spatial) ? "SPATIAL " : "") + "INDEX";
+
+						table_commands.push(`${command} (${option.value.map(escapeId).join(", ")})`);
+					} catch (err) {
+						console.log(this.name, this.properties);
+
+						throw err;
+					}
+					break;
 				case "unique":
-					table_commands.push(`${option.name.toUpperCase()} (${option.value.map(escapeId).join(", ")})`);
+					table_commands.push(`UNIQUE (${option.value.map(escapeId).join(", ")})`);
 					break;
 				case "fts":
 					table_commands.push(`FULLTEXT (${option.value.map(escapeId).join(", ")})`);

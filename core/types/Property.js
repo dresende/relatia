@@ -3,6 +3,7 @@ import { mapValue } from "../tools.js";
 export class Property {
 	name    = "";
 	type    = "property";
+	spatial = false;
 	options = {};
 
 	constructor(name) {

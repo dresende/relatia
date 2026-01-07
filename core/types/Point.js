@@ -3,6 +3,7 @@ import { escape, escapeId } from "../tools.js";
 
 export class Point extends Property {
 	type    = "point";
+	spatial = true;
 	options = {
 		default : "",
 	};
