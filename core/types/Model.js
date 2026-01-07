@@ -58,7 +58,7 @@ export class Model {
 		this.#depends = this.#depends.filter(dep => dep !== model);
 	}
 
-	definition({ models = {} }) {
+	definition({ models = {}, references = true }) {
 		const table_commands = [];
 
 		if (!("id" in this.properties)) {
@@ -84,11 +84,13 @@ export class Model {
 		}
 
 		// references
-		for (const name in this.properties) {
-			const property = this.properties[name];
+		if (references) {
+			for (const name in this.properties) {
+				const property = this.properties[name];
 
-			if (property.type == "reference") {
-				table_commands.push(property.reference_definition());
+				if (property.type == "reference") {
+					table_commands.push(property.reference_definition());
+				}
 			}
 		}
 
