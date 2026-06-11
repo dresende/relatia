@@ -35,11 +35,17 @@ export class Model {
 	}
 
 	#addOption(name, value) {
-		if ([ "unique", "index", "fts" ].includes(name) && !Array.isArray(value)) {
-			value = [ value ];
-		}
+		if ([ "unique", "index", "fts" ].includes(name)) {
+			if (!Array.isArray(value)) {
+				value = [ value ];
+			}
 
-		this.options.push({ name, value });
+			const spatial = value.some(property_name => this.properties[property_name].spatial === true);
+
+			this.options.push({ name, spatial, value });
+		} else {
+			this.options.push({ name, value });
+		}
 	}
 
 	type() {
