@@ -1,3 +1,8 @@
+## 0.1.2 - 11 Jun 2026
+
+- model:
+  - exposes spatial information in options
+
 ## 0.1.1 - 7 Jan 2026
 
 - model:
