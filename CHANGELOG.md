@@ -1,3 +1,8 @@
+## 0.2.0 - 6 Nov 2026
+
+- core:
+  - fixes JSON default not being NULL
+
 ## 0.1.2 - 11 Jun 2026
 
 - model:
