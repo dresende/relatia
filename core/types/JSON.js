@@ -3,7 +3,9 @@ import { escape, escapeId } from "../tools.js";
 
 export class JSON extends Property {
 	type    = "json";
-	options = {};
+	options = {
+		"null" : true,
+	};
 
 	constructor(name) {
 		super(name);
